@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Advinhe um número</h1>
+    <p id="resultado"></p>
+<script>
+    let num1 = Number(prompt("Escolha um número de 1 a 10: "))
+    let num2 = 0;
+    let i = 0;
+
+    while (num1 != num2) {
+        num2 = Number(prompt("Advinhe um número de 1 a 10"))
+        i++
+    }
+    document.getElementById("resultado").innerHTML = "Você acertou o número: " + i + " vez(es)";
+
+</script>
+</body>
+</html>
