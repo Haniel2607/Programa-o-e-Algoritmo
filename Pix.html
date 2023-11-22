@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferência Pix</title>
+    <script>
+        let contas = [];
+
+        function abrirConta() {
+            let cpf = prompt('Digite o CPF:');
+            let nome = prompt('Digite o nome:');
+            let saldoInicial = parseFloat(prompt('Digite o saldo inicial:'));
+            
+            let chavePix = cpf;
+            let conta = { cpf, nome, saldo: saldoInicial, chavePix };
+            contas.push(conta);
+            alert('Conta aberta com sucesso!');
+        }
+
+        function verificarSaldo() {
+            let cpf = prompt('Digite o CPF para verificar o saldo:');
+            let conta = contas.find(c => c.cpf === cpf);
+            let mensagem = conta ? `Saldo: ${conta.saldo}` : 'Conta não encontrada.';
+            alert(mensagem);
+        }
+
+        function fazerTransferencia() {
+            let origemCpf = prompt('Digite o CPF da conta de origem:');
+            let destinoCpf = prompt('Digite o CPF da conta de destino:');
+            let valor = parseFloat(prompt('Digite o valor da transferência:'));
+
+            let origem = contas.find(c => c.cpf === origemCpf);
+            let destino = contas.find(c => c.cpf === destinoCpf);
+
+            if (origem && destino && origem.saldo >= valor) {
+                origem.saldo -= valor;
+                destino.saldo += valor;
+                alert('Transferência realizada com sucesso!');
+                mostrarInformacoes(origem, destino, valor);
+            } else {
+                alert('Saldo insuficiente ou contas não encontradas.');
+            }
+        }
+
+        function mostrarInformacoes(origem, destino, valor) {
+            alert(`Transferência realizada:\n\nConta de Origem - CPF: ${origem.cpf}, Saldo: ${origem.saldo}\nConta de Destino - CPF: ${destino.cpf}, Saldo: ${destino.saldo}\nValor transferido: ${valor}`);
+        }
+    </script>
+</head>
+<body>
+
+    <script>
+        abrirConta();
+        abrirConta();
+        verificarSaldo();
+        fazerTransferencia();
+    </script>
+
+</body>
+</html>
